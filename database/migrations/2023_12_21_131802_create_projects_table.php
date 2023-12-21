@@ -9,10 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('project_name', 100);
+            $table->string('development_type', 10);
+            $table->string('github_link', 133); 
+            $table->string('project_status', 50);
             $table->timestamps();
         });
     }

@@ -20,7 +20,10 @@
                         <a href="{{$project->github_link}}">{{$project->github_link}}</a>
                     </span>
                 </div>
-                <button id="myBtn" class="btn btn-danger delete" style="width: fit-content">Delete</button>
+                <div class="d-flex gap-2 py-2">
+                    <a href="{{ route('admin.projects.edit',$project) }}" class="btn btn-warning">EDIT</a>
+                    <button id="myBtn" class="btn btn-danger delete" style="width: fit-content">DELETE</button>
+                </div>
                 <div id="bgForm" class="bg-form">
                 <div class="d-flex gap-3 delete-form">
                     <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">

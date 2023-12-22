@@ -65,7 +65,13 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $request->validate([
+            'project_name' => ['required', 'max:255', 'string', Rule::unique('projects')->ignore($project->id)],
+            'development_type' => Rule::in(['front-end', 'back-end', 'full-stack']),
+            'project_status' => Rule::in(['to start', 'in progress', 'completed'])
+        ]);
         $data = $request->all();
+        $data['github_link'] = 'https://github.com/CarloVeronese/'. Str::slug($data['project_name']);
         $project->update($data);
         return redirect()->route('admin.projects.show', $project);
     }

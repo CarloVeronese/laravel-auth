@@ -28,17 +28,17 @@
         <div class="mb-3">
             <label for="development_type" class="form-label">Type</label>
             <select type="text" class="form-control" name="development_type" id="development_type" placeholder="Project Type">
-                <option @selected(old('development_',$project->development_) === 'front-end')value="front-end">Front-End</option>
-                <option @selected(old('development_',$project->development_) === 'back-end')value="back-end">Back-End</option>
-                <option @selected(old('development_',$project->development_) === 'full-stack')value="full-stack">Full-Stack</option>
+                <option @selected(old('development_',$project->development_) === 'front-end') value="front-end">Front-End</option>
+                <option @selected(old('development_',$project->development_) === 'back-end') value="back-end">Back-End</option>
+                <option @selected(old('development_',$project->development_) === 'full-stack') value="full-stack">Full-Stack</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="project_status" class="form-label">Status</label>
             <select type="text" class="form-control" name="project_status" id="project_status" placeholder="Project Status">
-                <option @selected(old('project_status',$project->project_status) === 'to start')value="to start">To Start</option>
-                <option @selected(old('project_status',$project->project_status) === 'in progress')value="in progress">In Progress</option>
-                <option @selected(old('project_status',$project->project_status) === 'completed')value="completed">Completed</option>
+                <option @selected(old('project_status',$project->project_status) === 'to start') value="to start">To Start</option>
+                <option @selected(old('project_status',$project->project_status) === 'in progress') value="in progress">In Progress</option>
+                <option @selected(old('project_status',$project->project_status) === 'completed') value="completed">Completed</option>
             </select>
         </div>
         <div class="mb-3">

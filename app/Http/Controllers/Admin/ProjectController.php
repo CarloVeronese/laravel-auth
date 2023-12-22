@@ -12,9 +12,13 @@ use Illuminate\Support\Str;
 class ProjectController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::all();
+        $data = $request->all();
+        if(isset($data['title'])) {
+            $query = Project::where('project_name', 'like', "%{$data['title']}%");
+        }
+        $projects = isset($query) ? $query->paginate(20) : Project::paginate(20);
         return view('admin.projects.index', compact('projects'));
     }
 

@@ -17,7 +17,7 @@
                 <div class="d-flex gap-2">
                     <span class="fw-bold">Github Link: </span>
                     <span>
-                        <a href="{{$project->github_link}}">{{$project->github_link}}</a>
+                        <a href="{{$project->github_link}}" target="_blank">{{$project->github_link}}</a>
                     </span>
                 </div>
                 <div class="d-flex gap-2 py-2">

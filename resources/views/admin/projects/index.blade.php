@@ -6,14 +6,23 @@
         <table class="table table-stripped">
           <thead>
             <tr>
+              <td>
+                  <form action="{{route('admin.projects.index')}}" method="GET">
+                    <input class="form-control" placeholder="Filtra per titolo" type="text" name="title" value="{{ request()->get('title') }}">
+                  </form>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
                 <th>Project Name</th>
                 <th>Type</th>
                 <th>Github</th>
                 <th>Status</th>
                 <th>        
-                    <div>
-                        <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success colspan-2" style="font-size: 16px">NEW</a>
-                    </div>
+                  <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success colspan-2" style="font-size: 16px">NEW</a>
                 </th>
             </tr>
           </thead>

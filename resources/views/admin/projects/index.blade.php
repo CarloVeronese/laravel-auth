@@ -3,54 +3,50 @@
 @section('content')
     <section>
       <div class="container">
-        <h1>Projects</h1>
-      </div>
-    </section>
-    <section>
-      <div class="container">
-        <div>
-            <a href="{{route('admin.projects.create')}}" class="btn btn-success">NEW PROJECT</a>
-        </div>
         <table class="table table-stripped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Project Name</th>
-              <th>Type</th>
-              <th>Github</th>
-              <th>Status</th>
-              <th></th>
-              <th></th>
+                <th>Project Name</th>
+                <th>Type</th>
+                <th>Github</th>
+                <th>Status</th>
+                <th>        
+                    <div>
+                        <a href="{{route('admin.projects.create')}}" class="btn btn-sm btn-success colspan-2" style="font-size: 16px">NEW PROJECT</a>
+                    </div>
+                </th>
             </tr>
           </thead>
           <tbody>
             @forelse ($projects as $project)
-                <tr>
-                  <td>{{ $project->id}}</td>
-                  <td>
+                <tr class="align-middle">
+                    <td>
                     <a href="{{ route('admin.projects.show',$project) }}">
                         {{ $project->project_name  }}
-                    </a>
-                  </td>
-                  <td>{{ $project->development_type }}</td>
-                  <td>{{ $project->github_link }}</td>
-                  <td>{{ $project->project_status }}</td>
-                  <td>
-                    <a href="{{ route('admin.projects.edit',$project) }}">edit</a>
-                  </td>
-                  <td>
-                    <form action="{{ route('admin.projects.destroy',$project)}}" method="POST">
-                      @csrf
-                      @method('DELETE')
-
-                      <input class="btn btn-danger btn-sm" type="submit" value="delete">
-                    </form>
-                  </td>
-
+                        </a>
+                    </td>
+                    <td>{{ $project->development_type }}</td>
+                    <td>{{ $project->github_link }}</td>
+                    <td>{{ $project->project_status }}</td>
+                    <td>
+                        <div class="d-flex gap-2 align-items-center">
+                            <a href="{{ route('admin.projects.edit',$project) }}" class="btn btn-warning">edit</a>
+                            <button id="myBtn" class="btn btn-danger delete">Delete</button>
+                            <div id="bgForm" class="bg-form">
+                            <div class="d-flex gap-3 delete-form">
+                                <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-lg">Yes</button>
+                                </form>
+                                <button id="noBtn" class="btn btn-primary btn-lg">No</button>
+                            </div>
+                        </div>                        
+                    </td>
                 </tr>
             @empty
                 <tr>
-                  <td>Nessun post</td>
+                  <td>No Projects Found</td>
                 </tr>
             @endforelse
           </tbody>

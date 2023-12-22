@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
+
 
 class ProjectController extends Controller
 {
@@ -28,7 +31,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'project_name' => 'required|max:255|string|unique:projects',
+            'development_type' => Rule::in(['front-end', 'back-end', 'full-stack']),
+            'github_link' => 'max:255|string|unique:projects',
+            'project_status' => Rule::in(['to start', 'in progress', 'completed'])
+
+        ]);
         $data = $request->all();
+        $data['github_link'] = 'https://github.com/CarloVeronese/'. Str::slug($data['project_name']);
         $new_project = Project::create($data);
         return redirect()->route('admin.projects.show', $new_project);
     }
